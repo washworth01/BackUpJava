@@ -7,6 +7,7 @@ public class Game
 	static void selectTile(int xLocation, int yLocation)
 	{
 		grid.getGameGrid()[xLocation][yLocation].setIsSelected(true);
+		grid.selectAdjacentEmptyTiles(xLocation, yLocation);
 	}
 	
 	static void flagTile(int xLocation, int yLocation)

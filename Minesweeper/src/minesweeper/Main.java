@@ -14,7 +14,6 @@ public class Main
 		
 		while (gameOver != true)
 		{
-			System.out.println(minesweeper.Game.grid);
 			for (int i = 0; i < minesweeper.Game.grid.getSize(); i++)
 			{
 				for (int j = 0; j < minesweeper.Game.grid.getSize(); j++)
@@ -32,16 +31,25 @@ public class Main
 				selectY = sc.nextInt();
 				
 				minesweeper.Game.selectTile(selectX, selectY);
+				gameOver = minesweeper.Game.isSelectedBomb(selectX, selectY);
 			}
 			else if (optionSelect == 2)
 			{
 				selectX = sc.nextInt();
 				selectY = sc.nextInt();
 				
-				minesweeper.Game.selectTile(selectX, selectY);
+				minesweeper.Game.flagTile(selectX, selectY);
 			}
 		}
-		System.out.println(minesweeper.Game.grid);
+		for (int i = 0; i < minesweeper.Game.grid.getSize(); i++)
+		{
+			for (int j = 0; j < minesweeper.Game.grid.getSize(); j++)
+			{
+				System.out.print(minesweeper.Game.grid.getGameGrid()[i][j].toString() + "|");
+			}
+				System.out.println();
+		}
+		System.out.println("Game Over!");
 	
 	}
 }

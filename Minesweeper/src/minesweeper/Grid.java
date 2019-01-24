@@ -47,13 +47,81 @@ public class Grid extends Game
 				
 				System.out.println(gameGrid[xLocation][yLocation].getIsBomb());
 				
-				calculateAdjacentBombs(xLocation, yLocation, gameGrid);
+				calculateAdjacentBombs(xLocation, yLocation);
 				bombsLeft--;
 			}
 		}
 	}
 	
-	private void calculateAdjacentBombs(int xLocation, int yLocation, Tile[][] gameGrid)
+	public void selectAdjacentEmptyTiles(int xLocation, int yLocation)
+	{
+		if (xLocation + 1 < 9 && gameGrid[xLocation + 1][yLocation].getIsBomb() != true  && gameGrid[xLocation + 1][yLocation].getIsSelected() != true)
+		{
+			gameGrid[xLocation + 1][yLocation].setIsSelected(true);
+			if (gameGrid[xLocation + 1][yLocation].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation + 1, yLocation);
+			}
+		}
+		if (xLocation - 1 > 0 && gameGrid[xLocation - 1][yLocation].getIsBomb() != true && gameGrid[xLocation - 1][yLocation].getIsSelected() != true)
+		{
+			gameGrid[xLocation - 1][yLocation].setIsSelected(true);
+			if (gameGrid[xLocation - 1][yLocation].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation - 1, yLocation);
+			}
+		}
+		if (yLocation + 1 < 9 && gameGrid[xLocation][yLocation + 1].getIsBomb() != true && gameGrid[xLocation][yLocation + 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation][yLocation + 1].setIsSelected(true);
+			if (gameGrid[xLocation][yLocation + 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation, yLocation + 1);
+			}
+		}
+		if (yLocation - 1 > 0 && gameGrid[xLocation][yLocation - 1].getIsBomb() != true && gameGrid[xLocation][yLocation - 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation][yLocation - 1].setIsSelected(true);
+			if (gameGrid[xLocation][yLocation - 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation, yLocation - 1);
+			}
+		}
+		if (xLocation + 1 < 9 && yLocation + 1 < 9 && gameGrid[xLocation + 1][yLocation + 1].getIsBomb() != true && gameGrid[xLocation + 1][yLocation + 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation + 1][yLocation + 1].setIsSelected(true);
+			if (gameGrid[xLocation + 1][yLocation + 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation + 1, yLocation + 1);
+			}
+		}
+		if (xLocation - 1 > 0 && yLocation + 1 < 9 && gameGrid[xLocation - 1][yLocation + 1].getIsBomb() != true && gameGrid[xLocation - 1][yLocation + 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation - 1][yLocation + 1].setIsSelected(true);
+			if (gameGrid[xLocation - 1][yLocation + 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation - 1, yLocation + 1);
+			}
+		}
+		if (xLocation - 1 > 0 && yLocation - 1 > 0 && gameGrid[xLocation - 1][yLocation - 1].getIsBomb() != true && gameGrid[xLocation - 1][yLocation - 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation - 1][yLocation - 1].setIsSelected(true);
+			if (gameGrid[xLocation - 1][yLocation - 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation + 1, yLocation -1);
+			}
+		}
+		if (xLocation + 1 < 9 && yLocation - 1 > 0 && gameGrid[xLocation + 1][yLocation - 1].getIsBomb() != true && gameGrid[xLocation + 1][yLocation - 1].getIsSelected() != true)
+		{
+			gameGrid[xLocation + 1][yLocation - 1].setIsSelected(true);
+			if (gameGrid[xLocation + 1][yLocation + 1].getAdjacentBombs() == 0)
+			{
+				selectAdjacentEmptyTiles(xLocation + 1, yLocation + 1);
+			}
+		}
+	}
+	
+	private void calculateAdjacentBombs(int xLocation, int yLocation)
 	{
 		if (xLocation + 1 < 9)
 		{

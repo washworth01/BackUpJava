@@ -10,8 +10,6 @@ public class Main {
 		Read reader = new Read();
 		President presTest = new President();
 		
-		
-		
 		String presidentFile = "C:\\LocalInstall\\presidents.txt";
 		
 		try {
